@@ -19,8 +19,10 @@ Contributors:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #ifndef WIN32
 #include <unistd.h>
+#include <sys/time.h>
 #else
 #include <process.h>
 #include <winsock2.h>
@@ -36,6 +38,8 @@ int msg_count = 0;
 void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquitto_message *message)
 {
 	struct mosq_config *cfg;
+	struct timeval tval;
+	char timestamp[14];
 	int i;
 	bool res;
 
@@ -53,15 +57,18 @@ void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquit
 	}
 
 	if(cfg->verbose){
+		gettimeofday(&tval, NULL);
+		strftime(timestamp, sizeof(timestamp), "%H:%M:%S,000", localtime(&tval.tv_sec));
+		sprintf(&timestamp[8], ",%03ld", tval.tv_usec / 1000);
 		if(message->payloadlen){
-			printf("%s ", message->topic);
+			printf("%s %s ", timestamp, message->topic);
 			fwrite(message->payload, 1, message->payloadlen, stdout);
 			if(cfg->eol){
 				printf("\n");
 			}
 		}else{
 			if(cfg->eol){
-				printf("%s (null)\n", message->topic);
+				printf("%s %s (null)\n", timestamp, message->topic);
 			}
 		}
 		fflush(stdout);
