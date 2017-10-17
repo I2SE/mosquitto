@@ -80,6 +80,7 @@ struct mosq_config {
 	bool verbose; /* sub */
 	bool eol; /* sub */
 	int msg_count; /* sub */
+	int timeout; /* sub */
 #ifdef WITH_SOCKS
 	char *socks5_host;
 	int socks5_port;
