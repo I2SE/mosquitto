@@ -107,7 +107,7 @@ install : all
 	$(INSTALL) -d "${DESTDIR}$(prefix)/include"
 	$(INSTALL) mosquitto_plugin.h "${DESTDIR}${prefix}/include/mosquitto_plugin.h"
 ifeq ($(WITH_TLS),yes)
-	$(INSTALL) -d ${DESTDIR}$(prefix)/bin"
+	$(INSTALL) -d "${DESTDIR}$(prefix)/bin"
 	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} mosquitto_passwd "${DESTDIR}${prefix}/bin/mosquitto_passwd"
 endif
 
