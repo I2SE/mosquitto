@@ -24,17 +24,17 @@ all : libmosquitto.so.${SOVERSION} libmosquitto.a
 	$(MAKE) -C cpp
 
 install : all
-	$(INSTALL) -d ${DESTDIR}$(prefix)/lib${LIB_SUFFIX}/
-	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} libmosquitto.so.${SOVERSION} ${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so.${SOVERSION}
-	ln -sf libmosquitto.so.${SOVERSION} ${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so
-	$(INSTALL) -d ${DESTDIR}${prefix}/include/
-	$(INSTALL) mosquitto.h ${DESTDIR}${prefix}/include/mosquitto.h
+	$(INSTALL) -d "${DESTDIR}$(prefix)/lib${LIB_SUFFIX}/"
+	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} libmosquitto.so.${SOVERSION} "${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so.${SOVERSION}"
+	ln -sf libmosquitto.so.${SOVERSION} "${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so"
+	$(INSTALL) -d "${DESTDIR}${prefix}/include/"
+	$(INSTALL) mosquitto.h "${DESTDIR}${prefix}/include/mosquitto.h"
 	$(MAKE) -C cpp install
 
 uninstall :
-	-rm -f ${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so.${SOVERSION}
-	-rm -f ${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so
-	-rm -f ${DESTDIR}${prefix}/include/mosquitto.h
+	-rm -f "${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so.${SOVERSION}"
+	-rm -f "${DESTDIR}${prefix}/lib${LIB_SUFFIX}/libmosquitto.so"
+	-rm -f "${DESTDIR}${prefix}/include/mosquitto.h"
 
 reallyclean : clean
 

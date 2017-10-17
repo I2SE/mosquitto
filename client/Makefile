@@ -23,13 +23,13 @@ client_shared.o : client_shared.c client_shared.h
 	$(MAKE) -C ../lib
 
 install : all
-	$(INSTALL) -d ${DESTDIR}$(prefix)/bin
-	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} mosquitto_pub ${DESTDIR}${prefix}/bin/mosquitto_pub
-	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} mosquitto_sub ${DESTDIR}${prefix}/bin/mosquitto_sub
+	$(INSTALL) -d "${DESTDIR}$(prefix)/bin"
+	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} mosquitto_pub "${DESTDIR}${prefix}/bin/mosquitto_pub"
+	$(INSTALL) -s --strip-program=${CROSS_COMPILE}${STRIP} mosquitto_sub "${DESTDIR}${prefix}/bin/mosquitto_sub"
 
 uninstall :
-	-rm -f ${DESTDIR}${prefix}/bin/mosquitto_pub
-	-rm -f ${DESTDIR}${prefix}/bin/mosquitto_sub
+	-rm -f "${DESTDIR}${prefix}/bin/mosquitto_pub"
+	-rm -f "${DESTDIR}${prefix}/bin/mosquitto_sub"
 
 reallyclean : clean
 
